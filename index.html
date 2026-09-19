@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trylab - 끊임없이 시도하는 크리에이티브 랩</title>
+    <meta name="description" content="Trylab은 새로운 즐거움을 실험하고 만드는 프로젝트 팀입니다. 첫 번째 결과물 bbop을 만나보세요.">
+    <style>
+        /* --- 변수 및 리셋 --- */
+        :root {
+            --brand-color: #2563eb;
+            --accent-color: #6366f1;
+            --dark-text: #111827;
+            --gray-text: #4b5563;
+            --light-bg: #f9fafb;
+            --white: #ffffff;
+            --card-border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- 헤더 --- */
+        header {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--brand-color);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray-text);
+        }
+
+        .nav-menu a:hover {
+            color: var(--brand-color);
+        }
+
+        /* --- 히어로 섹션 --- */
+        .hero {
+            padding: 120px 0 100px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-bg) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            word-break: keep-all;
+        }
+
+        .scroll-down {
+            margin-top: 40px;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            color: var(--brand-color);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* --- 프로젝트 섹션 --- */
+        .projects {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            color: var(--brand-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: transparent;
+        }
+
+        .card-image-box {
+            height: 240px;
+            overflow: hidden;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--brand-color);
+            z-index: 10;
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 앱 아이콘 스타일 */
+        .app-icon-small {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .card-desc {
+            color: var(--gray-text);
+            font-size: 1rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            font-weight: 600;
+            color: var(--brand-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- 소개 (About) --- */
+        .about {
+            padding: 100px 0 120px;
+            background-color: var(--light-bg);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            color: var(--brand-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">Trylab.</a>
+            <nav class="nav-menu">
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <a href="mailto:trylab.hq@gmail.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>We try,<br>You enjoy.</h1>
+            <p>
+                Trylab은 새로운 즐거움을 실험하고 만드는 프로젝트 팀입니다.<br>
+                우리의 끊임없는 시도가 당신의 일상을 조금 더 특별하게 만듭니다.
+            </p>
+            <div class="scroll-down">↓</div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Work</span>
+                <h2 class="section-title">Experiments & Products</h2>
+            </div>
+
+            <div class="project-grid">
+
+                <article class="card">
+                    <div class="card-image-box">
+                        <span class="status-badge">Available Now</span>
+                        <img src="https://lh3.googleusercontent.com/d/1E28dE6n7sWjid5d3PriywaPXFnMtF7FT"
+                            alt="bbop 메인 이미지"
+                            onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #e0e7ff 0%, #fae8ff 100%)';">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">
+                            <img src="https://lh3.googleusercontent.com/d/1E28dE6n7sWjid5d3PriywaPXFnMtF7FT"
+                                class="app-icon-small" alt="bbop 아이콘"
+                                onerror="this.src='https://via.placeholder.com/32?text=B'">
+                            bbop (뽑)
+                        </h3>
+                        <p class="card-desc">
+                            결정 장애를 해결하는 가장 유쾌한 방법.
+                            점심 메뉴부터 벌칙 수행까지, bbop 하나로 일상의 즐거움을 뽑아보세요.
+                        </p>
+                        <a href="#" class="card-link">자세히 보기 &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="card" style="border-style: dashed; background-color: #f9fafb;">
+                    <div class="card-image-box" style="background-color: #f1f2f4; color: #9ca3af; font-size: 3rem;">
+                        ?
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">New Project</h3>
+                        <p class="card-desc">
+                            Trylab의 새로운 실험이 진행 중입니다.
+                            우리의 다음 시도를 기대해 주세요.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">About Us</span>
+                <h2 class="section-title">Why Trylab?</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>실패를 두려워하지 않는<br>실험실입니다.</h3>
+                    <p style="color: #4b5563;">
+                        완벽한 계획보다는 빠른 실행을, 정해진 답보다는 새로운 질문을 추구합니다.
+                        Trylab은 우리가 겪는 작은 불편함들을 기술과 위트로 해결하기 위해 모인 크리에이티브 팀입니다.
+                    </p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h4>1+</h4>
+                            <p>Launched Apps</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>∞</h4>
+                            <p>Possibilities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
